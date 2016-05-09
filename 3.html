@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <script>
+      var req = new Request('horse.jpg');
+      caches.match(req)
+      .then(function(response){
+        if(response){
+          return response;
+        }
+        return fetch('horse.jpg').then(function(res){
+          var res2 = res.clone();
+          caches.open('horse-app').then(function(cache){
+            cache.put(req, res2);
+          });
+          return res;
+        });
+      })
+      .then(function(res){
+        return res.blob();
+      })
+      .then(function(blob){
+        let url = URL.createObjectURL(blob);
+        document.getElementById('horse').src = url;
+      });
+    </script>
+  </head>
+  <body>
+    <img id="horse">
+  </body>
+</html>

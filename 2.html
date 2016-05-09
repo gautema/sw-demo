@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <script>
+      caches.match(new Request('horse.jpg'))
+      .then(function(response){
+        return response || fetch('horse.jpg');
+      })
+      .then(function(res){
+        return res.blob();
+      })
+      .then(function(blob){
+        let url = URL.createObjectURL(blob);
+        document.getElementById('horse').src = url;
+      });
+    </script>
+  </head>
+  <body>
+    <img id="horse">
+  </body>
+</html>
