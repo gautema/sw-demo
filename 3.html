@@ -8,9 +8,8 @@
           return response;
         }
         return fetch('horse.jpg').then(function(res){
-          var res2 = res.clone();
           caches.open('horse-app').then(function(cache){
-            cache.put(req, res2);
+            cache.put(req, res.clone());
           });
           return res;
         });
