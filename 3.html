@@ -7,7 +7,7 @@
         if(response){
           return response;
         }
-        return fetch('horse.jpg').then(function(res){
+        return fetch(req).then(function(res){
           caches.open('horse-app').then(function(cache){
             cache.put(req, res.clone());
           });

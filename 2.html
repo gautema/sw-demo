@@ -1,9 +1,10 @@
 <html>
   <head>
     <script>
-      caches.match(new Request('horse.jpg'))
+      let req = new Request('horse.jpg')
+      caches.match(req)
       .then(function(response){
-        return response || fetch('horse.jpg');
+        return response || fetch(req);
       })
       .then(function(res){
         return res.blob();
