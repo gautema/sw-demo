@@ -2,10 +2,7 @@
   <head>
     <script>
       let req = new Request('horse.jpg')
-      caches.match(req)
-      .then(function(response){
-        return response || fetch(req);
-      })
+      fetch(req)
       .then(function(res){
         return res.blob();
       })

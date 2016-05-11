@@ -2,7 +2,10 @@
   <head>
     <script>
       var req = new Request('horse.jpg');
-      caches.match(req)
+      caches.open('horse-app')
+      .then(function(cache){
+        return cache.match(req)
+      })
       .then(function(response){
         if(response){
           return response;
